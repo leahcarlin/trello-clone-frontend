@@ -14,6 +14,7 @@ export default function EditCard({
 }) {
   const [description, setDescription] = useState("");
   const [activity, setActivity] = useState("");
+  const [moveList, setMoveList] = useState("");
 
   // edit/update card details
   const updateCard = (e) => {
@@ -22,23 +23,35 @@ export default function EditCard({
     const findCard = findList.cards.find(
       ({ cardTitle }) => cardTitle === card.cardTitle
     );
+    const cardIndex = findList.cards.indexOf(findCard);
     if (cardName !== "") {
       findCard.cardTitle = cardName;
+      setCardName("");
     }
     if (description !== "") {
       findCard.description = description;
+      setDescription("");
     }
     if (activity !== "") {
       findCard.activities = [
         ...findCard.activities,
         { action: activity, createdAt: Date.now() },
       ];
+      setActivity("");
     }
-
+    if (moveList !== "") {
+      const addToList = lists.find(({ title }) => title === moveList);
+      addToList.cards.push(findCard);
+      findList.cards.splice(cardIndex, 1);
+      setMoveList("");
+    }
     toggleEdit();
   };
   return (
     <ModalContent>
+      <span className="close" onClick={toggleEdit}>
+        &times;
+      </span>
       <form onSubmit={updateCard}>
         <h3>
           <span style={{ fontWeight: "300" }}>Card:</span> {card.cardTitle}{" "}
@@ -74,24 +87,32 @@ export default function EditCard({
         ></input>
         <ul>
           {card.activities.map((act) => (
-            <li>
+            <li key={act.action}>
               {moment(act.createdAt).format("L")} | {act.action}
             </li>
           ))}
         </ul>
-        <br></br>
-        <p>
-          <span style={{ fontWeight: "300" }}>Current List:</span> {list.title}
-        </p>
-        <label for="lists">Move card to list</label>
-        <select id="list" name="list">
-          {lists.map((list) => (
-            <option value={list.title} key={list.title}>
-              {list.title}
+        <div className="move-card">
+          <p>
+            <span style={{ fontWeight: "300" }}>Current List:</span>{" "}
+            {list.title}
+          </p>
+          <select
+            id="list"
+            defaultValue={"DEFAULT"}
+            name="list"
+            onChange={(e) => setMoveList(e.target.value)}
+          >
+            <option value="DEFAULT" disabled>
+              Move Card
             </option>
-          ))}
-        </select>
-        <br></br>
+            {lists.map((list) => (
+              <option value={list.title} key={list.title}>
+                {list.title}
+              </option>
+            ))}
+          </select>
+        </div>
         <button type="submit">Save</button>
       </form>
     </ModalContent>

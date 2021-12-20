@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+// export const Header = styled.div``;
+
 export const Container = styled.div`
   position: fixed;
   z-index: 1;
@@ -98,4 +100,25 @@ export const ModalContent = styled.div`
   select {
     padding: 5px;
   }
+
+  .close {
+    color: Black;
+    float: right;
+  }
+
+  .close:hover {
+    color: #cef7ce;
+    cursor: pointer;
+  }
+
+  .move-card {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .move-card p {
+    margin-right: 10px;
+  }
 `;
+
+// export const Footer = styled.div``;
