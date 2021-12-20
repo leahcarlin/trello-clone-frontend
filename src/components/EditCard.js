@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import moment from "moment";
 
 //styles
-import { ListColumns, ModalContent } from "../App.styles";
+import { ModalContent } from "../App.styles";
 
 export default function EditCard({
   list,
@@ -28,7 +29,10 @@ export default function EditCard({
       findCard.description = description;
     }
     if (activity !== "") {
-      findCard.activities = [...findCard.activities, activity];
+      findCard.activities = [
+        ...findCard.activities,
+        { action: activity, createdAt: Date.now() },
+      ];
     }
 
     toggleEdit();
@@ -69,8 +73,10 @@ export default function EditCard({
           placeholder="Write a comment..."
         ></input>
         <ul>
-          {card.activities.map((action) => (
-            <li>{action}</li>
+          {card.activities.map((act) => (
+            <li>
+              {moment(act.createdAt).format("L")} | {act.action}
+            </li>
           ))}
         </ul>
         <br></br>
