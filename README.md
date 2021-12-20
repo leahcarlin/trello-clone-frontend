@@ -37,7 +37,7 @@ npm start
 
 - Project was fun to do!
 - There are some details / features I would add if I had more time
-  -- EditCard component/pop-up would have an Edit button on values title & description. Input would only show when Edit button is clicked.
-  -- Implement a drag & drop feature instead of select dropdown to move cards to another list
-  -- Identify a way to have the "Add Card" feature at the bottom of each list like the Trello app has.
-  -- Implement other features to the EditCard component i.e. adding label feature to organize content, due date feature.
+  - EditCard component/pop-up would have an Edit button on values title & description. Input would only show when Edit button is clicked.
+  - Implement a drag & drop feature instead of select dropdown to move cards to another list
+  - Identify a way to have the "Add Card" feature at the bottom of each list like the Trello app has.
+  - Implement other features to the EditCard component i.e. adding label feature to organize content, due date feature.
