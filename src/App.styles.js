@@ -7,12 +7,19 @@ export const Container = styled.div`
   z-index: 1;
   width: 100%;
   height: 100%;
+  margin: 10px;
+
+  body,
+  h1,
+  h3,
+  p {
+    font-family: "Signika", sans-serif;
+  }
 `;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
-  margin: 20px 10px;
 
   h3 {
     margin-right: 10px;
