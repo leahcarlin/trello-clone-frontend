@@ -2,28 +2,52 @@ import { useState } from "react";
 
 //components
 import Welcome from "./components/Welcome";
+import ListColumn from "./components/ListColumn";
+import AddCard from "./components/AddCard";
 
 //styles
-import { Header } from "./App.styles";
+import { Header, ListColumns } from "./App.styles";
 
 function App() {
   const [boardName, setBoardName] = useState("");
   const [name, setName] = useState("");
   const [listName, setListName] = useState("");
   const [lists, setLists] = useState([]);
+  const [addCard, setAddCard] = useState(false);
+  const [cardName, setCardName] = useState("");
 
   // create new board and store name of board
   const createBoard = (e) => {
     e.preventDefault();
-    setName(boardName);
-    setBoardName("");
+    if (boardName === "") {
+      alert("Please give your board a title");
+    } else {
+      setName(boardName);
+      setBoardName("");
+    }
   };
 
   // create a new list (column)
   const createList = (e) => {
     e.preventDefault();
-    setLists([...lists, { title: listName, cards: [] }]);
-    setListName("");
+    if (listName === "") {
+      alert("Please give your list a title");
+    } else {
+      setLists([...lists, { title: listName, cards: [] }]);
+      setListName("");
+    }
+  };
+
+  // add card to a list
+  const createCard = (e, listTitle) => {
+    console.log("card title?", listTitle);
+    const findList = lists.find(({ title }) => title === listTitle);
+    if (cardName === "") {
+      alert("Please give your card a title");
+    } else {
+      findList.cards.push({ cardTitle: cardName });
+      setCardName("");
+    }
   };
 
   console.log("lists?", lists);
@@ -51,11 +75,24 @@ function App() {
           </form>
         </Header>
       )}
-      <div>
+      <ListColumns>
         {lists.map((list) => (
-          <p>{list.title}</p>
+          <ListColumn list={list} />
         ))}
-      </div>
+      </ListColumns>
+      {lists.length > 0 ? (
+        <button type="button" onClick={() => setAddCard(!addCard)}>
+          Add Card
+        </button>
+      ) : null}
+      {addCard ? (
+        <AddCard
+          cardName={cardName}
+          setCardName={setCardName}
+          createCard={createCard}
+          lists={lists}
+        />
+      ) : null}
     </div>
   );
 }
