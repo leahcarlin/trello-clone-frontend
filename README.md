@@ -37,6 +37,7 @@ npm start
 
 - Project was fun to do!
 - There are some details / features I would add if I had more time
+  - I'm working on a couple typescript projects at the moment in order to better master Typescript. If I had more time, I would have done this in ts!
   - EditCard component/pop-up would have an Edit button on values title & description. Input would only show when Edit button is clicked.
   - Implement a drag & drop feature instead of select dropdown to move cards to another list
   - Identify a way to have the "Add Card" feature at the bottom of each list like the Trello app has.
