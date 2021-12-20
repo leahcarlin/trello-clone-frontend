@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+`;
+
 export const Header = styled.div`
   display: flex;
   align-items: center;
@@ -40,5 +47,55 @@ export const Card = styled.div`
     border-radius: 10px;
     margin: 10px 0px;
     box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
+  }
+`;
+
+export const AddCardDiv = styled.div`
+  form {
+    padding: 10px 0px;
+    background-color: #e8e8e8;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+
+    .list-btn {
+      border: none;
+      background-color: #e8e8e8;
+      display: flex;
+      margin-bottom: 10px;
+      padding: 0px;
+    }
+  }
+`;
+
+export const ModalContent = styled.div`
+  background-color: #cef7ce;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid black;
+
+  button {
+    background-color: white;
+    width: auto;
+    border: 1px solid;
+    padding: 5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0px 15px 0px;
+  }
+
+  label {
+    margin-right: 5px;
+  }
+  select {
+    padding: 5px;
   }
 `;

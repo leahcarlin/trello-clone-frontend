@@ -6,7 +6,7 @@ import ListColumn from "./components/ListColumn";
 import AddCard from "./components/AddCard";
 
 //styles
-import { Header, ListColumns } from "./App.styles";
+import { Header, ListColumns, Container } from "./App.styles";
 
 function App() {
   const [boardName, setBoardName] = useState("");
@@ -45,7 +45,11 @@ function App() {
     if (cardName === "") {
       alert("Please give your card a title");
     } else {
-      findList.cards.push({ cardTitle: cardName });
+      findList.cards.push({
+        cardTitle: cardName,
+        description: null,
+        activities: [],
+      });
       setCardName("");
     }
   };
@@ -53,7 +57,7 @@ function App() {
   console.log("lists?", lists);
 
   return (
-    <div className="App">
+    <Container>
       {name === "" ? (
         <Welcome
           boardName={boardName}
@@ -77,7 +81,13 @@ function App() {
       )}
       <ListColumns>
         {lists.map((list) => (
-          <ListColumn list={list} />
+          <ListColumn
+            list={list}
+            cardName={cardName}
+            setCardName={setCardName}
+            lists={lists}
+            key={list.title}
+          />
         ))}
       </ListColumns>
       {lists.length > 0 ? (
@@ -93,7 +103,7 @@ function App() {
           lists={lists}
         />
       ) : null}
-    </div>
+    </Container>
   );
 }
 
