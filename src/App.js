@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+//components
+import Welcome from "./components/Welcome";
 
 function App() {
+  const [boardName, setBoardName] = useState("");
+  const [name, setName] = useState("");
+
+  // create new board and store name of board
+  const createBoard = (e) => {
+    e.preventDefault();
+    setName(boardName);
+    setBoardName("");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {name === "" ? (
+        <Welcome
+          boardName={boardName}
+          setBoardName={setBoardName}
+          createBoard={createBoard}
+        />
+      ) : (
+        <h2>{name}</h2>
+      )}
     </div>
   );
 }
