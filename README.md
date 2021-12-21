@@ -1,7 +1,7 @@
 # Trello Clone App
 
 This is a simple react app that uses only React for state-management.
-The challange was to build a clone of a Trello board in 4 hours.
+The challenge was to build a clone of a Trello board in 4 hours.
 
 ## SETUP How to use this template
 
